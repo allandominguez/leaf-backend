@@ -13,7 +13,7 @@ notch/
 │   ├── asgi.py
 │   └── wsgi.py
 └── apps/
-    ├── auth/
+    ├── users/
     └── notes/
 ```
 
@@ -49,5 +49,5 @@ Visit `http://127.0.0.1:8000` to view the application.
 
 ## Apps
 
-- **auth** - Authentication and user management
+- **users** - Authentication and user management
 - **notes** - Note management functionality
