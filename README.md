@@ -47,6 +47,24 @@ python manage.py runserver
 
 Visit `http://127.0.0.1:8000` to view the application.
 
+## Contributing
+For new feature branches use:
+```
+add/*
+update/*
+```
+
+For bugfix branches use:
+```
+fix/*
+```
+
+For maintenance branches use:
+```
+improve/*
+chore/*
+```
+
 ## Apps
 
 - **users** - Authentication and user management
