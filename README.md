@@ -1,11 +1,13 @@
-# Notch
+# Leaf
 
-A Django-based application for managing notes.
+A fast, minimal, page‑based thinking tool — not a traditional notes manager.
+
+_Open → write instantly → close → move on._ 
 
 ## Project Structure
 
 ```
-notch/
+leaf/
 ├── manage.py
 ├── config/
 │   ├── settings.py
