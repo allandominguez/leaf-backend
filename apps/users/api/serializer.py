@@ -1,16 +1,24 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.Serializer):
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
     """
     Currently a READ-only serializer on EmailUser.
     Should add field constraints when implementing create and update.
     """
 
-    id = serializers.IntegerField()
-    email = serializers.EmailField()
-    first_name = serializers.CharField()
-    last_name = serializers.CharField()
-    is_active = serializers.BooleanField()
-    is_staff = serializers.BooleanField()
-    date_joined = serializers.DateTimeField()
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "is_active",
+            "is_staff",
+            "date_joined",
+        ]
