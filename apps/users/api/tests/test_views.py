@@ -37,7 +37,7 @@ class TestUserSearchViewIntegration:
             first_name="Jane",
             last_name="Doe",
         )
-        response = client.get("/users/search/?email=test@example.com")
+        response = client.get("/users/search/email/?email=test@example.com")
         assert response.status_code == 200
         assert response.data["first_name"] == "Jane"
         assert response.data["is_staff"] is False
@@ -49,11 +49,11 @@ class TestUserSearchViewIntegration:
             first_name="Jane",
             last_name="Doe",
         )
-        response = client.get("/users/search/?email=test@example.com")
+        response = client.get("/users/search/email/?email=test@example.com")
         assert response.status_code == 200
         assert response.data["first_name"] == "Jane"
         assert response.data["is_staff"] is True
 
     def test_non_existing_user(self, client, db):
-        response = client.get("/users/search/?email=test@example.com")
+        response = client.get("/users/search/email/?email=test@example.com")
         assert response.status_code == 404
