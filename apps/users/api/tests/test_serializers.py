@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
 from unittest.mock import Mock
-from ..serializer import UserSerializer
+from ..serializers import UserSerializer
 
 
 User = get_user_model()
 
 
-class TestIntegrationUserSerializer:
+class TestUserSerializersIntegration:
     def test_user_data(self, db):
         user = User.objects.create_user(
             email="test@example.com",
@@ -42,7 +42,7 @@ class TestIntegrationUserSerializer:
         )
 
 
-class TestUnitUserSerializer:
+class TestUserSerializersUnit:
     def test_data(self):
         user = Mock(
             id=1,
