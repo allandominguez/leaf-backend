@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
+from rest_framework import generics
 
 from .serializers import UserSerializer
 
@@ -8,19 +8,16 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
-class UserListView(APIView):
-    def get(self, request):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+class UserListView(generics.ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.all()
     
 
-class UserSearchView(APIView):
-    def get(self, request):
-        email = request.query_params.get("email")
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return Response(status=404)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+class UserSearchView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        email = self.request.query_params.get("email")
+        return get_object_or_404(User, email=email)
