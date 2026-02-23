@@ -1,11 +1,14 @@
 from django.contrib.auth import get_user_model
 from unittest.mock import Mock
+
+import pytest
 from ..serializers import UserSerializer
 
 
 User = get_user_model()
 
 
+@pytest.mark.integration
 class TestUserSerializersIntegration:
     def test_user_data(self, db):
         user = User.objects.create_user(
