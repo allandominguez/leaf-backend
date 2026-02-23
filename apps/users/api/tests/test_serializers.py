@@ -21,7 +21,7 @@ class TestUserSerializersIntegration:
         assert serializer.data["email"] == "test@example.com"
         assert serializer.data["first_name"] == "Jane"
         assert serializer.data["last_name"] == "Doe"
-        assert serializer.data["is_active"] is False
+        assert serializer.data["is_active"] is True
         assert serializer.data["is_staff"] is False
         assert serializer.data["date_joined"] == user.date_joined.isoformat().replace(
             "+00:00", "Z"

@@ -28,5 +28,5 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           ALLOWED_HOSTS: "localhost"
         run: |
-          pytest --tb=short
+          pytest --tb=short --cov=. --cov-report=term-missing --cov-fail-under=80
           echo "All tests passed"
