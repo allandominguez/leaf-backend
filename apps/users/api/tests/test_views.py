@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+import pytest
 
 
 User = get_user_model()
@@ -29,6 +30,7 @@ class TestUserListViewIntegration:
         assert response.data[0]["is_staff"] is True
 
 
+@pytest.mark.integration
 class TestUserSearchViewIntegration:
     def test_user(self, client, db):
         User.objects.create_user(
