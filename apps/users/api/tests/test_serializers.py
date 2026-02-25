@@ -1,9 +1,9 @@
-from django.contrib.auth import get_user_model
 from unittest.mock import Mock
 
 import pytest
-from ..serializers import UserSerializer
+from django.contrib.auth import get_user_model
 
+from ..serializers import UserSerializer
 
 User = get_user_model()
 
@@ -54,7 +54,7 @@ class TestUserSerializersUnit:
             last_name="Doe",
             is_active=True,
             is_staff=False,
-            date_joined="20260101"
+            date_joined="20260101",
         )
         serializer = UserSerializer(user)
         assert serializer.data == {
@@ -64,5 +64,5 @@ class TestUserSerializersUnit:
             "last_name": "Doe",
             "is_active": True,
             "is_staff": False,
-            "date_joined": "20260101"
+            "date_joined": "20260101",
         }
