@@ -63,9 +63,26 @@ python manage.py runserver
 
 Visit `http://127.0.0.1:8000` to view the application.
 
-#### Using pre-commit configuration
-`pre-commit` has also been included and configured in this project. To use, install the pre-commit hooks:
+### Code Quality
+This project uses [ruff](https://docs.astral.sh/ruff/) for linting and formatting.
+
+Run the linter:
+```bash
+ruff check .
 ```
+
+Run the linter with auto-fix:
+```bash
+ruff check --fix .
+```
+
+Run the formatter:
+```bash
+ruff format .
+```
+
+Pre-commit hooks has also been configured to run both automatically on each commit. To install them:
+```bash
 pre-commit install
 ```
 

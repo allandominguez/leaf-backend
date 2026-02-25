@@ -4,7 +4,6 @@ from rest_framework import generics
 
 from .serializers import UserSerializer
 
-
 User = get_user_model()
 
 
@@ -13,7 +12,7 @@ class UserListView(generics.ListAPIView):
 
     def get_queryset(self):
         return User.objects.all()
-    
+
 
 class UserSearchView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
