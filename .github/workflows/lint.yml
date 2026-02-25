@@ -1,0 +1,29 @@
+name: Lint workflow
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo into runner
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-dev.txt
+          echo "Dependencies installed successfully"
+
+      - name: Run linter
+        run: |
+          ruff check .
+          echo "Linting passed"
