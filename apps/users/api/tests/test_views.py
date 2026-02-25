@@ -8,7 +8,7 @@ class TestUserListViewIntegration:
     def test_user(self, client, db):
         User.objects.create_user(
             email="test@example.com",
-            password="secret",
+            password="secret",  # pragma: allowlist secret
             first_name="Jane",
             last_name="Doe",
         )
@@ -20,7 +20,7 @@ class TestUserListViewIntegration:
     def test_superuser(self, client, db):
         User.objects.create_superuser(
             email="test@example.com",
-            password="secret",
+            password="secret",  # pragma: allowlist secret
             first_name="Jane",
             last_name="Doe",
         )
@@ -34,7 +34,7 @@ class TestUserSearchViewIntegration:
     def test_user(self, client, db):
         User.objects.create_user(
             email="test@example.com",
-            password="secret",
+            password="secret",  # pragma: allowlist secret
             first_name="Jane",
             last_name="Doe",
         )
@@ -46,7 +46,7 @@ class TestUserSearchViewIntegration:
     def test_superuser(self, client, db):
         User.objects.create_superuser(
             email="test@example.com",
-            password="secret",
+            password="secret",  # pragma: allowlist secret
             first_name="Jane",
             last_name="Doe",
         )

@@ -31,7 +31,7 @@ class TestEmailUserManager:
     def test_password_saved(self):
         manager = EmailUserManager()
         manager.model = _DummyUser
-        password = "Test Password123!"
+        password = "Test Password123!"  # pragma: allowlist secret
         user = manager.create_user(email="test@example.com", password=password)
         assert user.password == password
 
