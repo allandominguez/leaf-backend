@@ -94,9 +94,9 @@ echo "package-name" >> requirements.in
 
 2. Compile and sync:
 ```bash
-pip-compile requirements.in         # compiles prod requirements
-pip-compile requirements-dev.in     # compiles dev requirements (which includes prod)
-pip-sync requirements-dev.txt       # this installs all requirements locally
+pip-compile requirements.in         # compiles prod requirements (requirements.txt)
+pip-compile requirements-dev.in     # compiles dev requirements, including prod (requirements-dev.txt)
+pip-sync requirements-dev.txt       # this installs all requirements locally (requirements-dev.txt)
 ```
 
 3. Commit both `.in` and `.txt` files:
