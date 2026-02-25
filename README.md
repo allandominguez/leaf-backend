@@ -1,3 +1,5 @@
+[![Test workflow](https://github.com/allandominguez/leaf-backend/actions/workflows/test.yml/badge.svg)](https://github.com/allandominguez/leaf-backend/actions/workflows/test.yml)
+
 # Leaf
 
 A fast, minimal, page‑based thinking tool — not a traditional notes manager.
@@ -60,6 +62,20 @@ python manage.py runserver
 ```
 
 Visit `http://127.0.0.1:8000` to view the application.
+
+#### Using pre-commit configuration
+`pre-commit` has also been included and configured in this project. To use, install the pre-commit hooks:
+```
+pre-commit install
+```
+
+### Tests
+Run the test suite:
+`pytest --tb=short`
+
+With coverage:
+`pytest --tb=short --cov=. --cov-report=term-missing`
+
 
 ### Branch naming scheme
 For new feature branches, use:
