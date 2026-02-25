@@ -1,4 +1,5 @@
 import pytest
+
 from .._email_manager import EmailUserManager, InvalidCredential
 
 

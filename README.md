@@ -1,3 +1,6 @@
+[![Test workflow](https://github.com/allandominguez/leaf-backend/actions/workflows/test.yml/badge.svg)](https://github.com/allandominguez/leaf-backend/actions/workflows/test.yml)
+[![Lint workflow](https://github.com/allandominguez/leaf-backend/actions/workflows/lint.yml/badge.svg)](https://github.com/allandominguez/leaf-backend/actions/workflows/lint.yml)
+
 # Leaf
 
 A fast, minimal, page‑based thinking tool — not a traditional notes manager.
@@ -61,6 +64,37 @@ python manage.py runserver
 
 Visit `http://127.0.0.1:8000` to view the application.
 
+### Code Quality
+This project uses [ruff](https://docs.astral.sh/ruff/) for linting and formatting.
+
+Run the linter:
+```bash
+ruff check .
+```
+
+Run the linter with auto-fix:
+```bash
+ruff check --fix .
+```
+
+Run the formatter:
+```bash
+ruff format .
+```
+
+Pre-commit hooks has also been configured to run both automatically on each commit. To install them:
+```bash
+pre-commit install
+```
+
+### Tests
+Run the test suite:
+`pytest --tb=short`
+
+With coverage:
+`pytest --tb=short --cov=. --cov-report=term-missing`
+
+
 ### Branch naming scheme
 For new feature branches, use:
 ```
@@ -94,9 +128,9 @@ echo "package-name" >> requirements.in
 
 2. Compile and sync:
 ```bash
-pip-compile requirements.in         # compiles prod requirements
-pip-compile requirements-dev.in     # compiles dev requirements (which includes prod)
-pip-sync requirements-dev.txt       # this installs all requirements locally
+pip-compile requirements.in         # compiles prod requirements (requirements.txt)
+pip-compile requirements-dev.in     # compiles dev requirements, including prod (requirements-dev.txt)
+pip-sync requirements-dev.txt       # this installs all requirements locally (requirements-dev.txt)
 ```
 
 3. Commit both `.in` and `.txt` files:
