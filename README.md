@@ -82,7 +82,8 @@ Run the formatter:
 ruff format .
 ```
 
-Pre-commit hooks has also been configured to run both automatically on each commit. To install them:
+#### Pre-commit configuration
+Pre-commit hooks has also been configured to run `ruff` and [detect-secrets](https://github.com/Yelp/detect-secrets). To install them:
 ```bash
 pre-commit install
 ```

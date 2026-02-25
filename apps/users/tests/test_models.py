@@ -30,19 +30,28 @@ class TestEmailUser:
 class TestEmailUserIntegration:
     def test_email_user_saved_to_database(self, db):
         email = "integration@example.com"
-        EmailUser.objects.create_user(email=email, password="testpass123")
+        EmailUser.objects.create_user(
+            email=email,
+            password="testpass123",  # pragma: allowlist secret
+        )
         retrieved_user = EmailUser.objects.get(email=email)
         assert retrieved_user.email == email
         assert str(retrieved_user) == email
 
     def test_email_user_uniqueness(self, db):
         email = "unique@example.com"
-        EmailUser.objects.create_user(email=email, password="testpass123")
+        EmailUser.objects.create_user(
+            email=email,
+            password="testpass123",  # pragma: allowlist secret
+        )
         with pytest.raises(Exception):
-            EmailUser.objects.create_user(email=email, password="testpass123")
+            EmailUser.objects.create_user(
+                email=email,
+                password="testpass123",  # pragma: allowlist secret
+            )
 
     def test_email_user_authentication(self, db):
         email = "auth@example.com"
-        password = "testpass123"
+        password = "testpass123"  # pragma: allowlist secret
         user = EmailUser.objects.create_user(email=email, password=password)
         assert user.check_password(password)
