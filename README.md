@@ -5,10 +5,9 @@
 
 A fast, minimal, page‑based thinking tool — not a traditional notes manager.
 
-_Open → write instantly → close → move on._ 
+**_Open → write instantly → close → move on._** 
 
 ## Project Structure
-
 ```
 leaf/
 ├── manage.py
@@ -23,7 +22,6 @@ leaf/
 ```
 
 ## Apps
-
 - **users** - Authentication and user management
 - **notes** - Note management functionality
 
@@ -35,7 +33,6 @@ leaf/
 - PostgreSQL (for production, SQLite for local dev)
 
 ### Setup
-
 1. Create a virtual environment:
 ```bash
 python -m venv venv
@@ -115,13 +112,10 @@ chore/*
 ```
 
 ### Managing dependencies
-
 We use `pip-tools` to manage dependencies for reproducible builds.
 
 #### Adding a New Dependency
-
 **For production dependencies:**
-
 1. Add package to `requirements.in`:
 ```bash
 echo "package-name" >> requirements.in
@@ -141,7 +135,6 @@ git commit -m "Add package-name dependency"
 ```
 
 **For development-only dependencies (testing, linting, etc):**
-
 1. Add to `requirements-dev.in`:
 ```bash
 echo "pytest-mock" >> requirements-dev.in
@@ -160,7 +153,6 @@ git commit -m "Add pytest-mock for testing"
 ```
 
 ### Updating Dependencies
-
 **Update a specific package:**
 ```bash
 pip-compile --upgrade-package django requirements.in
