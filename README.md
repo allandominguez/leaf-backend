@@ -3,9 +3,51 @@
 
 # Leaf
 
+**Status:** 🚧 In Active Development
+
 A fast, minimal, page‑based thinking tool — not a traditional notes manager.
 
 **_Open → write instantly → close → move on._** 
+
+## Key Features (Planned)
+
+- **Instant capture** - Opens to blank page in <1 second
+- **Page limits** - Fixed capacity per note (like physical pages)
+- **Finite memory** - Notebook holds 64-192 pages, oldest expire automatically
+- **Simple filing** - Two-level directory system for important notes
+- **Single pin** - One pinned note (grocery list, packing list, etc.)
+- **Photo support** - One photo per note as visual anchor
+- **Offline-first** - Works without internet, syncs when available
+
+## Tech Stack
+
+**Backend:**
+- Django 6.0 + Django REST Framework (planned)
+- PostgreSQL (production) / SQLite (development)
+- Django REST Knox (token authentication - planned)
+- Supabase Storage (photos - planned)
+
+**Mobile:** (planned)
+- React Native (Expo)
+- TypeScript
+- React Navigation
+
+**DevOps:**
+- pytest + pytest-django (testing)
+- ruff (linting and formatting)
+- GitHub Actions (CI/CD)
+- pre-commit hooks
+- Railway/Render (deployment - planned)
+
+## Roadmap
+
+See [Initiative & Epic Plan](docs/initiative-plan.md) for detailed breakdown.
+
+**Phase 1 (Current):** Foundation & Authentication  
+**Phase 2:** Core Note Features  
+**Phase 3:** Mobile UI & Navigation  
+**Phase 4:** Polish & Deployment  
+**Phase 5:** Post-Launch Iteration
 
 ## Project Structure
 ```
@@ -92,25 +134,6 @@ Run the test suite:
 With coverage:
 `pytest --tb=short --cov=. --cov-report=term-missing`
 
-
-### Branch naming scheme
-For new feature branches, use:
-```
-add/*
-update/*
-```
-
-For bugfix branches, use:
-```
-fix/*
-```
-
-For maintenance branches, use:
-```
-improve/*
-chore/*
-```
-
 ### Managing dependencies
 We use `pip-tools` to manage dependencies for reproducible builds.
 
@@ -171,3 +194,53 @@ pip-sync requirements-dev.txt
 pytest
 python manage.py check
 ```
+
+### Files Explanation
+
+| File | Purpose | Edit Manually? |
+|------|---------|----------------|
+| `requirements.in` | Production dependencies we need | ✅ Yes |
+| `requirements.txt` | Pinned production deps + sub-deps | ❌ No (auto-generated) |
+| `requirements-dev.in` | Dev/test deps (references requirements.in) | ✅ Yes |
+| `requirements-dev.txt` | Pinned dev deps + sub-deps | ❌ No (auto-generated) |
+
+
+
+### Branch naming scheme
+For new feature branches, use:
+```
+add/*
+update/*
+```
+
+For bugfix branches, use:
+```
+fix/*
+```
+
+For maintenance branches, use:
+```
+improve/*
+chore/*
+```
+
+## Contributing
+
+This is primarily a personal portfolio project, but feedback and suggestions are welcome! Feel free to:
+- Open issues for bugs or suggestions
+- Share thoughts on the constraint-based approach
+- Suggest improvements to architecture or code quality
+
+**Note:** As this is a learning project, I'm intentionally building features myself rather than accepting PRs, but discussion is encouraged.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details
+
+## Contact
+
+**Allan Dominguez**  
+[Portfolio](https://allandominguez.dev/) | [GitHub](https://github.com/allandominguez) | [LinkedIn](https://www.linkedin.com/in/allan-dominguez-113625146/) | [Email](mailto:allan.c.dominguez@gmail.com) 
+
+*This project is part of my portfolio demonstrating full-stack product development capabilities.*
+
