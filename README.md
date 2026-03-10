@@ -7,7 +7,7 @@
 
 A fast, minimal, page‑based thinking tool — not a traditional notes manager.
 
-**_Open → write instantly → close → move on._** 
+**_Open → write instantly → close → move on._**
 
 ## Key Features (Planned)
 
@@ -35,6 +35,7 @@ A fast, minimal, page‑based thinking tool — not a traditional notes manager.
 **DevOps:**
 - pytest + pytest-django (testing)
 - ruff (linting and formatting)
+- uv (dependency management)
 - GitHub Actions (CI/CD)
 - pre-commit hooks
 - Railway/Render (deployment - planned)
@@ -53,6 +54,7 @@ See [Initiative & Epic Plan](docs/initiative-plan.md) for detailed breakdown.
 ```
 leaf/
 ├── manage.py
+├── pyproject.toml
 ├── config/
 │   ├── settings.py
 │   ├── urls.py
@@ -70,159 +72,107 @@ leaf/
 ## Development
 
 ### Prerequisites
-- Python 3.11+
-- pip-tools (`pip install pip-tools`)
-- PostgreSQL (for production, SQLite for local dev)
+- Python 3.13+
+- [uv](https://docs.astral.sh/uv/)
 
 ### Setup
-1. Create a virtual environment:
+1. Install uv:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 2. Install dependencies:
 ```bash
-pip-sync requirements-dev.txt
+uv sync --dev
 ```
 
-3. Run migrations:
+3. Install pre-commit hooks:
 ```bash
-python manage.py migrate
+uv run pre-commit install
 ```
 
-4. Create a superuser:
+4. Run migrations:
 ```bash
-python manage.py createsuperuser
+uv run python manage.py migrate
 ```
 
-5. Run the development server:
+5. Create a superuser:
 ```bash
-python manage.py runserver
+uv run python manage.py createsuperuser
+```
+
+6. Run the development server:
+```bash
+uv run python manage.py runserver
 ```
 
 Visit `http://127.0.0.1:8000` to view the application.
 
+### Managing Dependencies
+
+Dependencies are managed via `pyproject.toml` and `uv`.
+
+#### Adding a dependency
+```bash
+uv add django-filter          # production
+uv add --dev pytest-mock      # development only
+```
+
+#### Updating dependencies
+```bash
+uv sync --dev
+```
+
+Always test after updating:
+```bash
+uv run pytest
+uv run python manage.py check
+```
+
 ### Code Quality
+
 This project uses [ruff](https://docs.astral.sh/ruff/) for linting and formatting.
 
 Run the linter:
 ```bash
-ruff check .
+uv run ruff check .
 ```
 
 Run the linter with auto-fix:
 ```bash
-ruff check --fix .
+uv run ruff check --fix .
 ```
 
 Run the formatter:
 ```bash
-ruff format .
+uv run ruff format .
 ```
 
-#### Pre-commit configuration
-Pre-commit hooks has also been configured to run `ruff` and [detect-secrets](https://github.com/Yelp/detect-secrets). To install them:
+Pre-commit hooks are configured to run both automatically on each commit. To install them:
 ```bash
-pre-commit install
+uv run pre-commit install
 ```
 
 ### Tests
+
 Run the test suite:
-`pytest --tb=short`
+```bash
+uv run pytest --tb=short
+```
 
 With coverage:
-`pytest --tb=short --cov=. --cov-report=term-missing`
-
-### Managing dependencies
-We use `pip-tools` to manage dependencies for reproducible builds.
-
-#### Adding a New Dependency
-**For production dependencies:**
-1. Add package to `requirements.in`:
 ```bash
-echo "package-name" >> requirements.in
+uv run pytest --tb=short --cov=. --cov-report=term-missing
 ```
 
-2. Compile and sync:
-```bash
-pip-compile requirements.in         # compiles prod requirements (requirements.txt)
-pip-compile requirements-dev.in     # compiles dev requirements, including prod (requirements-dev.txt)
-pip-sync requirements-dev.txt       # this installs all requirements locally (requirements-dev.txt)
-```
+## Branching
 
-3. Commit both `.in` and `.txt` files:
-```bash
-git add requirements.in requirements.txt
-git commit -m "Add package-name dependency"
-```
-
-**For development-only dependencies (testing, linting, etc):**
-1. Add to `requirements-dev.in`:
-```bash
-echo "pytest-mock" >> requirements-dev.in
-```
-
-2. Compile and sync:
-```bash
-pip-compile requirements-dev.in
-pip-sync requirements-dev.txt
-```
-
-3. Commit:
-```bash
-git add requirements-dev.in requirements-dev.txt
-git commit -m "Add pytest-mock for testing"
-```
-
-### Updating Dependencies
-**Update a specific package:**
-```bash
-pip-compile --upgrade-package django requirements.in
-pip-sync requirements-dev.txt
-```
-
-**Update all packages:**
-```bash
-pip-compile --upgrade requirements.in
-pip-compile --upgrade requirements-dev.in
-pip-sync requirements-dev.txt
-```
-
-**Always test after updating:**
-```bash
-pytest
-python manage.py check
-```
-
-### Files Explanation
-
-| File | Purpose | Edit Manually? |
-|------|---------|----------------|
-| `requirements.in` | Production dependencies we need | ✅ Yes |
-| `requirements.txt` | Pinned production deps + sub-deps | ❌ No (auto-generated) |
-| `requirements-dev.in` | Dev/test deps (references requirements.in) | ✅ Yes |
-| `requirements-dev.txt` | Pinned dev deps + sub-deps | ❌ No (auto-generated) |
-
-
-
-### Branch naming scheme
-For new feature branches, use:
-```
-add/*
-update/*
-```
-
-For bugfix branches, use:
-```
-fix/*
-```
-
-For maintenance branches, use:
-```
-improve/*
-chore/*
-```
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production-ready code |
+| `add/desc`, `update/desc` | New features |
+| `fix/desc` | Bug fixes |
+| `chore/desc`, `improve/desc` | Maintenance tasks (dependencies, config etc.) |
 
 ## Contributing
 
@@ -235,12 +185,11 @@ This is primarily a personal portfolio project, but feedback and suggestions are
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details
+MIT License - see [LICENSE](.github/LICENSE) file for details
 
 ## Contact
 
 **Allan Dominguez**  
-[Portfolio](https://allandominguez.dev/) | [GitHub](https://github.com/allandominguez) | [LinkedIn](https://www.linkedin.com/in/allan-dominguez-113625146/) | [Email](mailto:allan.c.dominguez@gmail.com) 
+[Portfolio](https://allandominguez.dev/) | [GitHub](https://github.com/allandominguez) | [LinkedIn](https://www.linkedin.com/in/allan-dominguez-113625146/) | [Email](mailto:allan.c.dominguez@gmail.com)
 
 *This project is part of my portfolio demonstrating full-stack product development capabilities.*
-

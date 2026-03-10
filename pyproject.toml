@@ -1,7 +1,31 @@
+[project]
+name = "leaf-backend"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "django",
+    "python-decouple",
+    "djangorestframework",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-django", 
+    "pytest-cov",
+    "ruff",
+    "pre-commit",
+    "detect-secrets",
+]
+
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 addopts = "--nomigrations --reuse-db"
+markers = [
+    "integration: mark a test as an integration test",
+    "slow: mark tests that take a long time to run"
+]
 
 [tool.ruff]
 line-length = 88

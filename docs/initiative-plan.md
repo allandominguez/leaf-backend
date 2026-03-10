@@ -34,7 +34,7 @@ Build a constraint-based, mobile-first note capture app that feels like a physic
 **Stories:**
 1. **Local Development Setup**
     - Install Python 3.11+, PostgreSQL, Node.js 18+
-    - Set up virtual environment and pip dependencies
+    - Set up ~~virtual environment and pip dependencies~~ `uv` dependency management
     - Configure VS Code / IDE with relevant extensions
     - Acceptance: Can run `python manage.py runserver` successfully
 2. **Django Project Initialization**

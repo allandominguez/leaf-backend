@@ -13,14 +13,12 @@ jobs:
       - name: Clone repo into runner
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
+      - name: Install uv - Python package manager
+        uses: astral-sh/setup-uv@v5
 
       - name: Install dependencies
         run: |
-          pip install -r requirements-dev.txt
+          uv sync --dev
           echo "Dependencies installed successfully"
 
       - name: Run tests
@@ -28,5 +26,5 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           ALLOWED_HOSTS: "localhost"
         run: |
-          pytest --tb=short --cov=. --cov-report=term-missing --cov-fail-under=80
+          uv run pytest --tb=short --cov=. --cov-report=term-missing --cov-fail-under=80
           echo "All tests passed"
