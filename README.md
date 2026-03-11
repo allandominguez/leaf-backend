@@ -3,7 +3,7 @@
 
 # Leaf
 
-**Status:** 🚧 In Active Development
+> **Status:** 🚧 Early-stage prototype. Core user models and authentication being implemented.
 
 A fast, minimal, page‑based thinking tool — not a traditional notes manager.
 
@@ -173,6 +173,32 @@ uv run pytest --tb=short --cov=. --cov-report=term-missing
 | `add/desc`, `update/desc` | New features |
 | `fix/desc` | Bug fixes |
 | `chore/desc`, `improve/desc` | Maintenance tasks (dependencies, config etc.) |
+
+## Project Goals 
+
+The core of this project was just being able to **continue my joy of building and maintaining software**.
+
+Additionally, I want to use it as a way to explore and expand my skillset as a product-focused software engineer. So I also hope to demonstrate:
+
+**Product focused thinking:**
+- Translating a product vision into technical implementation
+- Building with constraints to improve user experience
+
+**Technical Skills:**
+- Modern REST API design with Django
+- Mobile app development with React Native (planned)
+- Authentication and authorization patterns
+- Offline-first architecture with sync (planned)
+- Test-driven development practices
+- CI/CD pipeline setup
+- Production deployment and monitoring (planned)
+
+**Professional Practices:**
+- Clean git history and meaningful commits
+- Comprehensive testing and test coverage (unit, integration, API)
+- Exploring dependency management with **uv** 
+- Code quality automation (linting, formatting, pre-commit hooks)
+- Documentation and code organization
 
 ## Contributing
 
