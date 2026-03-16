@@ -42,7 +42,3 @@ db.sqlite3-journal
 htmlcov/
 .pytest_cache/
 .tox/
-
-# Migrations 
-**/migrations/*.py
-!**/migrations/__init__.py
