@@ -1,3 +1,4 @@
+[![Build](https://github.com/allandominguez/leaf-backend/actions/workflows/build.yml/badge.svg)](https://github.com/allandominguez/leaf-backend/actions/workflows/build.yml)
 [![Test workflow](https://github.com/allandominguez/leaf-backend/actions/workflows/test.yml/badge.svg)](https://github.com/allandominguez/leaf-backend/actions/workflows/test.yml)
 [![Lint workflow](https://github.com/allandominguez/leaf-backend/actions/workflows/lint.yml/badge.svg)](https://github.com/allandominguez/leaf-backend/actions/workflows/lint.yml)
 
