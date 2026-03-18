@@ -1,6 +1,6 @@
 import pytest
 
-from ..models import EmailUser
+from ..email_user import EmailUser
 
 
 class TestEmailUser:
