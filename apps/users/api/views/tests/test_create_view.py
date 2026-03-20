@@ -87,3 +87,13 @@ class TestUserCreateViewIntegration:
         resp = client.post("/users/register/", payload)
         assert resp.status_code == 429
         assert "throttled" in resp.data.get("detail", "").lower()
+
+    def test_auth_request_fails(self, auth_client):
+        payload = {
+            "email": "newuser@example.com",
+            "password": "securepass123",  # pragma: allowlist secret
+            "first_name": "John",
+            "last_name": "Doe",
+        }
+        response = auth_client.post("/users/register/", payload)
+        assert response.status_code == 403
