@@ -1,5 +1,7 @@
 import pytest
 
+from .conftest import TEST_PASSWORD
+
 
 @pytest.mark.integration
 class TestUserSearchViewIntegration:
@@ -7,7 +9,7 @@ class TestUserSearchViewIntegration:
         email = "test@example.com"
         user_model.objects.create_user(
             email=email,
-            password="secret",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="Jane",
             last_name="Doe",
         )

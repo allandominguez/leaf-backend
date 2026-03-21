@@ -4,6 +4,7 @@ import pytest
 from django.contrib.auth import get_user_model
 
 from ..serializers import UserSerializer
+from .conftest import TEST_PASSWORD
 
 User = get_user_model()
 
@@ -36,7 +37,7 @@ class TestUserSerializersIntegration:
     def test_user_data(self, db):
         user = User.objects.create_user(
             email="test@example.com",
-            password="secret",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="Jane",
             last_name="Doe",
         )
@@ -53,7 +54,7 @@ class TestUserSerializersIntegration:
     def test_superuser_data(self, db):
         user = User.objects.create_superuser(
             email="test2@example.com",
-            password="secret",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="John",
             last_name="Smith",
         )

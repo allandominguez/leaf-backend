@@ -1,6 +1,8 @@
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from .conftest import TEST_PASSWORD
+
 
 class TestUserListViewIntegration:
     def test_admin_user(self, auth_client):
@@ -11,7 +13,7 @@ class TestUserListViewIntegration:
         api_client = APIClient()
         user = user_model.objects.create_superuser(
             email="admin@example.com",
-            password="secret",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="Jane",
             last_name="Doe",
         )

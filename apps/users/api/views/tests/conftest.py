@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 
+TEST_PASSWORD = "secret123"  # pragma: allowlist secret
+
 
 @pytest.fixture
 def user_model():
@@ -14,7 +16,7 @@ def auth_client(user_model, db):
     api_client = APIClient()
     admin_user = user_model.objects.create_superuser(
         email="admin@example.com",
-        password="secret",  # pragma: allowlist secret
+        password=TEST_PASSWORD,
         first_name="Admin",
         last_name="User",
     )
