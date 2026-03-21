@@ -2,6 +2,8 @@ import pytest
 from django.core.cache import cache
 from rest_framework.test import APIClient
 
+from .conftest import TEST_PASSWORD
+
 
 @pytest.mark.integration
 class TestUserCreateViewIntegration:
@@ -16,7 +18,7 @@ class TestUserCreateViewIntegration:
     def payload(self):
         return {
             "email": "newuser@example.com",
-            "password": "securepass123",  # pragma: allowlist secret
+            "password": TEST_PASSWORD,
             "first_name": "John",
             "last_name": "Doe",
         }
@@ -55,7 +57,7 @@ class TestUserCreateViewIntegration:
     def test_failed_existing_user(self, user_model, payload, db):
         user_model.objects.create_user(
             email="newuser@example.com",
-            password="securepass123",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="John",
             last_name="Doe",
         )
@@ -69,7 +71,7 @@ class TestUserCreateViewIntegration:
         for i in range(5):
             payload = {
                 "email": f"user{i}@example.com",
-                "password": "securepass123",  # pragma: allowlist secret
+                "password": TEST_PASSWORD,
                 "first_name": "Jane",
                 "last_name": "Doe",
             }
@@ -78,7 +80,7 @@ class TestUserCreateViewIntegration:
 
         payload = {
             "email": "user5@example.com",
-            "password": "securepass123",  # pragma: allowlist secret
+            "password": TEST_PASSWORD,
             "first_name": "Jane",
             "last_name": "Doe",
         }

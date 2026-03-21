@@ -10,20 +10,21 @@ from django.utils import timezone
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from .conftest import TEST_PASSWORD
+
 
 @pytest.mark.integration
 class TestTokenObtainPairView:
     def test_valid_credentials(self, user_model, db):
         api_client = APIClient()
         email = "test@example.com"
-        password = "secret123"  # pragma: allowlist secret
         user_model.objects.create_user(
             email=email,
-            password=password,
+            password=TEST_PASSWORD,
             first_name="Jane",
             last_name="Doe",
         )
-        payload = {"email": email, "password": password}
+        payload = {"email": email, "password": TEST_PASSWORD}
         response = api_client.post("/api/token/", payload)
         assert response.status_code == 200
         assert "access" in response.data
@@ -34,7 +35,7 @@ class TestTokenObtainPairView:
         email = "test@example.com"
         user_model.objects.create_user(
             email=email,
-            password="secret123",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="Jane",
             last_name="Doe",
         )
@@ -46,7 +47,7 @@ class TestTokenObtainPairView:
         api_client = APIClient()
         payload = {
             "email": "test@example.com",
-            "password": "secret123",  # pragma: allowlist secret
+            "password": TEST_PASSWORD,
         }
         response = api_client.post("/api/token/", payload)
         assert response.status_code == 401
@@ -58,7 +59,7 @@ class TestTokenRefreshView:
     def user(self, user_model, db):
         return user_model.objects.create_user(
             email="test@example.com",
-            password="secret123",  # pragma: allowlist secret
+            password=TEST_PASSWORD,
             first_name="Jane",
             last_name="Doe",
         )
