@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.0
+    rev: v0.4.4
     hooks:
       - id: ruff
         args: [--fix]
@@ -10,3 +10,12 @@ repos:
     rev: v1.4.0
     hooks:
       - id: detect-secrets
+
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: uv run pyright
+        language: system
+        types: [python]
+        pass_filenames: false
