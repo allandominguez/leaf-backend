@@ -1,18 +1,19 @@
 import pytest
-from django.contrib.auth import get_user_model
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from ....models.email_user import EmailUser
 
 TEST_PASSWORD = "secret123"  # pragma: allowlist secret
 
 
 @pytest.fixture
-def user_model():
-    return get_user_model()
+def user_model() -> type[EmailUser]:
+    return EmailUser
 
 
 @pytest.fixture
-def auth_client(user_model, db):
+def auth_client(user_model: type[EmailUser], db: None):
     api_client = APIClient()
     admin_user = user_model.objects.create_superuser(
         email="admin@example.com",
