@@ -49,9 +49,9 @@ exclude = [
     "**/node_modules", 
     "**/__pycache__", 
     "**/.*", 
-    ".venv", 
-    "**/test_*.py"
+    ".venv"
 ]
+ignore = ["**/test_*.py"]
 typeCheckingMode = "standard"
 reportMissingParameterType = "error"
 reportUnknownParameterType = "error"
