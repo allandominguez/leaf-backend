@@ -10,6 +10,7 @@ from django.utils import timezone
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from ....models.email_user import EmailUser
 from .conftest import TEST_PASSWORD
 
 
@@ -56,7 +57,7 @@ class TestTokenObtainPairView:
 @pytest.mark.integration
 class TestTokenRefreshView:
     @pytest.fixture
-    def user(self, user_model, db):
+    def user(self, user_model: type[EmailUser], db: None):
         return user_model.objects.create_user(
             email="test@example.com",
             password=TEST_PASSWORD,

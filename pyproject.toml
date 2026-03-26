@@ -12,15 +12,19 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest",
-    "pytest-django", 
+    "pytest-django",
     "pytest-cov",
     "ruff",
     "pre-commit",
     "detect-secrets",
+    "pyright>=1.1.408",
+    "django-stubs>=6.0.1",
+    "djangorestframework-stubs>=3.16.8",
 ]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings"
+pythonpath = ["."]
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 addopts = "--nomigrations --reuse-db"
 markers = [
@@ -37,3 +41,20 @@ exclude = [
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]  # pycodestyle, pyflakes, isort
+
+[tool.pyright]
+include = ["apps", "config"]
+exclude = [
+    "**/migrations/**", 
+    "**/node_modules", 
+    "**/__pycache__", 
+    "**/.*", 
+    ".venv", 
+    "**/test_*.py"
+]
+typeCheckingMode = "standard"
+reportMissingParameterType = "error"
+reportUnknownParameterType = "error"
+
+[tool.django-stubs]
+django_settings_module = "config.settings"

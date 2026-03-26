@@ -1,16 +1,20 @@
+from typing import Any, Optional
+
 from django.contrib.auth.models import BaseUserManager
 
 
 class InvalidCredential(ValueError):
     """Raised when invalid user credential passed."""
 
-    def __init__(self, message="Invalid user credential"):
+    def __init__(self, message: str = "Invalid user credential"):
         self.message = message
         super().__init__(self.message)
 
 
 class EmailUserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(
+        self, email: str, password: Optional[str] = None, **extra_fields: Any
+    ):
         if not email:
             raise InvalidCredential("The Email field must be set")
         email = self.normalize_email(email)
@@ -19,7 +23,9 @@ class EmailUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None, **extra_fields):
+    def create_superuser(
+        self, email: str, password: Optional[str] = None, **extra_fields: Any
+    ):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 

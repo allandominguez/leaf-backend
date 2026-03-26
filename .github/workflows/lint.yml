@@ -24,3 +24,8 @@ jobs:
         run: |
           uv run ruff check .
           echo "Linting passed"
+
+      - name: Run type checker
+        run: |
+          uv run pyright
+          echo "Type check passed"

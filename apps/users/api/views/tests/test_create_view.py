@@ -15,7 +15,7 @@ class TestUserCreateViewIntegration:
         cache.clear()
 
     @pytest.fixture
-    def payload(self):
+    def payload(self) -> dict[str, str]:
         return {
             "email": "newuser@example.com",
             "password": TEST_PASSWORD,
