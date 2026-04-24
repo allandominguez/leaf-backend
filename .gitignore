@@ -42,3 +42,7 @@ db.sqlite3-journal
 htmlcov/
 .pytest_cache/
 .tox/
+
+# AI tools
+CLAUDE.md
+.claudeignore
